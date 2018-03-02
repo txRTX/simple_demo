@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>搜索</title>
+</head>
+<style>
+	#content{
+		//font-size:16px;
+		font-family:'微软雅黑';
+	}
+	#content span{
+		color:#ff0000;
+	}
+	
+</style>
+<body>
+	<input id='seachText' type = 'text' value='搜索'>
+	<button id= 'searchBtn'>搜索</button>
+	<div id = 'content'>
+	都制作是这样子的，我知道你养殖的是猪，可是你偏偏跟我说是小鸡，我就实地去考察啊，你非不行，把照片给你看了，你才知道，这简直是
+	对你非常不好，因为你不跟我说实话，因为你怕我不喜欢吃猪肉，喜欢吃鸡肉，然后送我鸡吃的时候，你就不会拒绝我的好意啦，哈哈哈
+	</div>
+	
+	<script>
+	window.onload = function(){
+		var mainCon = document.getElementById('content');
+		var sb = document.getElementById('searchBtn');
+		var st = document.getElementById('seachText');
+		
+		st.onfocus = function(){
+		//alert(1);
+			st.value = '';
+		}
+		
+		var searText = '';
+		var con = mainCon.innerHTML;
+		sb.onclick = function(){
+			searText = st.value;
+			console.log(searText);
+			
+			
+			//正则表达式开始
+			//[\u4e00-\u9fa5]
+			
+			console.log(con);
+			var reg = "/"+searText+"/g"; 
+			
+			var result = con.replace(eval(reg),"<span>"+searText+"</span>");
+			mainCon.innerHTML = result;
+			
+			console.log(result)
+		}
+		
+		
+		
+		
+		
+	}
+	
+	</script>
+</body>
+</html>
