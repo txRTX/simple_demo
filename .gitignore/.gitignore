@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>特殊输入框效果</title>
+
+<style type="text/css">
+	.box{
+		width:400px;
+		height: 100x;
+		margin: 300px auto;
+		position: relative;
+	}
+	input{
+		width: 400px;
+		height: 50px;
+		border: 1px solid #ff0000;
+		border-radius: 50px;
+		font-size: 20px;
+		color: #00bafa;
+		padding-left: 8px;
+ 		-webkit-box-sizing: border-box;
+  		-moz-box-sizing: border-box;
+ 		box-sizing: border-box;
+ 		 
+	}
+	input[type="text"][required]:focus {
+		border-color: #00bafa;
+	}
+	input[type="text"][required]:invalid + label[placeholder][alt]:before {
+	   content: attr(alt);
+	}
+	input[type="text"][required]:valid + label[placeholder]:before {
+		content: attr(placeholder);
+		position: absolute;
+		left:25px;
+		top:-12px;
+	}
+	input[type="text"][required]+label[placeholder]:before{
+		display: block;
+		color:#00ff00;
+		background: #fff;
+		position: absolute;
+		left:25px;
+		top:15px;
+		pointer-events: none;
+		transition: all 0.5s ease-in-out;
+	}
+	input[type="text"][required]:focus+label[placeholder]:before{
+		color:#00ffff;
+		background: #fff;
+		padding: 3px 6px;
+		position: absolute;
+		left:25px;
+		top:-12px;
+		
+	}
+</style>
+<script>
+
+</script>
+</head>
+<body>
+	<div class="box">
+		
+		<form>
+            <input required='' type='text'>
+            <label alt='请输入名称' placeholder='名称'></label>
+        </form>
+	</div>
+
+</body>
+
+</html>
