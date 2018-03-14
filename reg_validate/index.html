@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <title>正则验证</title>
+  <style>
+  #yourText,#yourResult{
+    width: 400px;
+    height: 100px;
+    margin-top: 30px;
+  }
+  #regInput{
+    width: 400px;
+    margin: 30px 0;
+  }
+
+   
+  </style>
+</head>
+<body>
+<textarea id = "yourText" placeholder="输入"></textarea><br />
+
+<input type="text" id="regInput" placeholder="输入正则表达式" /><br />
+
+<input type="button" name="match" id = 'btnMatch' value="match" />
+<input type="button" name="test" id = 'btnTest' value="test" />
+<input type="button" name="replace" id = 'btnReplace' value="replace" /><br />
+
+<textarea id="yourResult" readonly = 'readonly' placeholder="匹配结果"></textarea>
+<script type="text/javascript" src = 'zepto.min.js'></script>
+<script type="text/javascript">
+$(function(){
+  
+    var yourResultCon = $('#yourResult').val();
+
+
+    $('#btnMatch').click(function(){
+        matchFun();
+    });
+    $('#btnTest').click(function(){
+        testFun();
+    })
+
+
+    function testFun(){
+        var yourTextCon = $('#yourText').val();
+        var regInputCon = $('#regInput').val();
+        var reg = /\"/g;
+        regInputCon = regInputCon.replace(reg,"");
+        
+        if(yourTextCon !='' && regInputCon!=''){
+            var regs = new RegExp(regInputCon);
+            var result = regs.test(yourTextCon);
+            
+            console.log(result)
+            $('#yourResult').val(yourResultCon);
+        }else{
+            alert('请完整填写数据哦！')
+        }
+    }
+
+    function matchFun(){
+        var yourTextCon = $('#yourText').val();
+        var regInputCon = $('#regInput').val();
+        var reg = /\"/g;
+        regInputCon = regInputCon.replace(reg,"");
+
+        if(yourTextCon !='' && regInputCon!=''){
+            var regs = new RegExp(regInputCon);
+            var result = yourTextCon.match(regs);
+       
+                yourResultCon = result;
+             
+            console.log(result)
+            $('#yourResult').val(yourResultCon);
+        }else{
+            alert('请完整填写数据哦！')
+        }
+    }
+    $('#btnReplace').click(function(){
+        var objData = commonPart();
+        var regs = new RegExp(objData.reg);
+        var textCont = objData.content;
+        var result = textCont.match(regs);
+       
+            yourResultCon = result;
+             
+            console.log(result)
+            $('#yourResult').val(yourResultCon);
+    })
+
+    /*function replaceFun(){
+        
+    }*/
+    //var obj = commonPart({'method':'match'});
+   // console.log(obj);
+    function commonPart(){
+         var yourTextCon = $('#yourText').val();
+        var regInputCon = $('#regInput').val();
+        var reg = /\"/g;
+        regInputCon = regInputCon.replace(reg,"");
+
+        var options ={'content':yourTextCon,'reg':regInputCon}
+        var ops = $.extend({},options);
+        if(yourTextCon =='' || regInputCon==''){
+             alert('请完整填写数据哦！')
+        }else{
+           return ops 
+        }
+
+        
+       // return ops;
+    }
+    
+
+
+})
+
+</script>
+   
+</body>
+</html>
